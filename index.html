@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Pocket Cube</title>
+        <meta charset="utf-8">
+		<script data-main="main" src="require.js"></script>
+	</head>
+ 
+    <body>
+		<h2>Real-time Image Segmentation</h2>
+		<video id="video" width="640" height="480" autoplay></video>
+		<canvas id="canvas" width="256" height="192" style="vertical-align: top;"></canvas>
+		
+		<div>
+			output resolution:
+				128x96<input id="res_in" type="range" min="2" max="10" value="4"/>640x480
+				(<span id="info_res"></span>)<br/>
+			threshold:
+				200<input id="threshold_in" type="range" min="2" max="30" value="10"/>3000
+				(<span id="info_threshold"></span>)<br/>
+			frame: <span id="info_frame"></span><br/>
+			fps: <span id="info_fps"></span><br/>
+		</div>		
+		
+		<h3>About the Implementation</h3>
+		<p>In order to maintain undistracted video streaming from the webcam, streaming is done in the main thread while segmentation is done in the background thread.</p>
+		<p>Image is converted to weighted graph. Pixels are represented by nodes and neighbor pixels are connected with an edge. Weights of the edges are determined by calculating similarity between pixels.</p>
+		<p>Next, segmentation is done by grouping similar pixels. Algorithm for grouping is similar to Kruskal's algorithm for finding minimum spanning tree. Difference is that every time when two sets are to be connected, test for similarity between them is done. Similarity test is done by subtracting average colors between sets and comparing the difference with the threshold. (Mahalanobis and Bhattacharyya distance have been tried here, but there was no obvious advantage and there was great performance disadvantage of using those).</p>
+		<p>Union-find data structure is implemented using typed array for performance boost.</p>
+		<p>Overall complexity of the algorithm is O(n*&alpha;(n)), where n is number of pixels, and &alpha;(n) is inverse of the single-valued Ackermann function. Since &alpha;(n)&lt;4 for any practical value of n, we have amortized linear time complexity.</p>
+
+	</body>
+</html>

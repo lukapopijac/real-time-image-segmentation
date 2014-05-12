@@ -15,24 +15,35 @@
 			<canvas id="canvas" width="256" height="192" style="vertical-align: top;"></canvas>
 			<div class="right-wrapper">
 				<video id="video" width="320" height="240" autoplay></video>
-				<div>output resolution</div>
-				<div>
-					<input id="res_in" type="range" min="2" max="10" value="4"/>
-					<div class="range-stop">128x96</div>
-					<div class="range-stop">640x480</div>
-					(<span id="info_res"></span>)
+				<div class="controls-wrapper">
+				
+				<div>Output resolution:
+					<select id="res_in">
+						<option value="2">128x96</option>
+						<option value="3">192x144</option>
+						<option value="4">256x192</option>
+						<option value="5" selected>320x240</option>
+						<option value="6">384x288</option>
+						<option value="7">448x336</option>
+						<option value="8">512x384</option>
+						<option value="9">576x432</option>
+						<option value="10">640x480</option>
+					</select>
+				</div>
+				
+				<div class="separator"></div>
+				<div>Threshold: <span id="info_threshold"></span><br/>
+					<span class="range-stop">200</span> <input id="threshold_in" type="range" min="2" max="30" value="10"/> <span class="range-stop">3000</span>
 				</div>
 				<div class="separator"></div>
-				<div>threshold</div>
-				<div>
-					200<input id="threshold_in" type="range" min="2" max="30" value="10"/>3000
-					(<span id="info_threshold"></span>)
-				</div>
+				Segmentation: <span id="info_frame"></span><br/>
 				<div class="separator"></div>
-				frame duration: <span id="info_frame"></span><br/>
-				fps: <span id="info_fps"></span><br/>
+				FPS: <span id="info_fps"></span><br/>
+				
+				</div>
 			</div>
 			<div style="clear: both;"></div>
+			<p>Info about this project can be found <a href="..">here</a>.</p>
 		</article>
 	</body>
 </html>

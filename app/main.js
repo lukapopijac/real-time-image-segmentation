@@ -3,7 +3,10 @@ function imageDataFromVideo(video, width, height) {
 	canvas.width = width;
 	canvas.height = height;
 	var ctx = canvas.getContext('2d');
-	ctx.drawImage(video, 0, 0, width, height);
+	
+	try {ctx.drawImage(video, 0, 0, width, height);}   // workaround for bug in firefox
+	catch(e) {if(e.name != 'NS_ERROR_NOT_AVAILABLE') throw e;}
+	
 	var imageData = ctx.getImageData(0, 0, width, height);
 	return imageData;
 }
@@ -34,7 +37,6 @@ function initControls() {
 		var val = this.value;
 		var w = 64*val;
 		var h = 48*val;
-		document.getElementById('info_res').innerHTML = w+'x'+h;
 		var canvas = document.getElementById('canvas');
 		canvas.width = w;
 		canvas.height = h;
@@ -48,60 +50,48 @@ function initControls() {
 	document.getElementById('threshold_in').onchange();
 }
 
-
+function sendImageDataToWorker(canvas, video, worker) {
+	var obj = {
+		imageData: imageDataFromVideo(video, canvas.width, canvas.height),
+		threshold: getThreshold()
+	};
+	worker.postMessage(obj);
+}
 
 function main() {
-	var canvas = document.getElementById("canvas");
-	var context = canvas.getContext("2d");
-	var video = document.getElementById("video");
-	var videoObj = {video: true};
-	var errBack = function(error) {
-		console.log("Video capture error: ", error.code); 
-	};
-
-	// Put video listeners into place
-	if(navigator.getUserMedia) { // Standard
-		navigator.getUserMedia(videoObj, function(stream) {
-			video.src = stream;
-			video.play();
-			onCameraPermit();
-		}, errBack);
-	} else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
-		navigator.webkitGetUserMedia(videoObj, function(stream){
-			video.src = window.webkitURL.createObjectURL(stream);
-			video.play();
-			onCameraPermit();
-		}, errBack);
-	}
-	else if(navigator.mozGetUserMedia) { // Firefox-prefixed
-		navigator.mozGetUserMedia(videoObj, function(stream){
-			video.src = window.URL.createObjectURL(stream);
-			video.play();
-			onCameraPermit();
-		}, errBack);
-	}
+	var canvas = document.getElementById('canvas');
+	var context = canvas.getContext('2d');
+	var video = document.getElementById('video');
 	
+	var videoObj = {video: true};
+	var errorCallback = function(error) {
+		console.log('Video capture error: ', error.code); 
+	};
+	var successCallback = function(stream) {
+		window.stream = stream;
+		if(window.URL) video.src = window.URL.createObjectURL(stream);
+		else video.src = stream;
+		video.play();
+		sendImageDataToWorker(canvas, video, worker);
+	};
+	
+	// initialize getUserMedia:
+	navigator.getUserMedia = navigator.getUserMedia || 
+		navigator.webkitGetUserMedia || 
+		navigator.mozGetUserMedia;
+	navigator.getUserMedia(videoObj, successCallback, errorCallback);
+	
+	// initialize worker:
 	var worker = new Worker('worker.js');
 	var cnt = 0;
 	var avg = 0;
 	worker.addEventListener('message', function(evt) {
 		context.putImageData(evt.data.imageData, 0, 0);
 		updateFrameRateInfo(evt.data.time);
-		sendImageDataToWorker();
+		sendImageDataToWorker(canvas, video, worker);
 	});
 	
-	function sendImageDataToWorker() {
-		var obj = {
-			imageData: imageDataFromVideo(video, canvas.width, canvas.height),
-			threshold: getThreshold()
-		};
-		worker.postMessage(obj);
-	}
-	
-	function onCameraPermit() {
-		setTimeout(sendImageDataToWorker, 1000);
-	}
-	
+	// initialize controls:
 	initControls();
 }
 

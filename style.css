@@ -1,0 +1,33 @@
+article {
+	font: 16px Verdana, Geneva, sans-serif;
+	line-height: 1.6;
+	max-width: 980px;
+	margin: 0 auto;
+	text-align: justify;
+}
+h1 {
+	font: 32px sans-serif;
+	text-align: center;
+	margin-top: 40px;
+	margin-bottom: 30px;
+}
+h2 {
+	font: 24px sans-serif;
+	font-weight: bold;
+	text-align: left;
+	margin-top: 40px;
+	margin-left: 60px;
+}
+#canvas_stream {
+	border: 3px solid black;
+}
+.flip {
+	-webkit-transform: scale(-1, 1); 
+	transform: scale(-1, 1);
+}
+.wrapper-center {
+	width: 100%;
+	text-align: center;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}

@@ -1,8 +1,8 @@
 importScripts('require.js');
-require(['segmentation2'], function() {
+require(['segmentation'], function() {
 
 
-var segmentation = require('segmentation2');
+var segmentation = require('segmentation');
 
 self.addEventListener('message', function(evt) {
 	var imageData = evt.data.imageData;

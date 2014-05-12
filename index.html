@@ -10,14 +10,26 @@
 		<article>
 			<h1>Real-time Image Segmentation</h1>
 			
-
+			<p><a href="http://en.wikipedia.org/wiki/Image_segmentation">Image segmentation</a> is the process of partitioning a digital image into multiple segments. This project is about image segmentation in real-time of directly streamed video from webcam.</p>
+			
+			<p>As the application uses some advanced features from HTML5 and Javascript, at the time of this writing, some modern browsers were not capable to support the application.</p>
+			
+			<p>The application can be tried <a href="app/" target="_blank">here</a>.</p>
+			
+			<p>The whole application runs in the browser. There is no communication with the server whatsoever (other than initial page load, of course).</p>
+			
 			<h2>About the Implementation</h2>
 			
 			<p>In order to maintain undistracted video streaming from the webcam, streaming is done in the main thread while segmentation is done in the background thread.</p>
+			
 			<p>Image is converted to weighted graph. Pixels are represented by nodes and neighbor pixels are connected with an edge. Weights of the edges are determined by calculating similarity between pixels.</p>
+			
 			<p>Next, segmentation is done by grouping similar pixels. Algorithm for grouping is similar to Kruskal's algorithm for finding minimum spanning tree. Difference is that every time when two sets are to be connected, test for similarity between them is done. Similarity test is done by subtracting average colors between sets and comparing the difference with the threshold. (Mahalanobis and Bhattacharyya distance have been tried here, but there was no obvious advantage and there was great performance disadvantage of using those).</p>
+			
 			<p>Union-find data structure is implemented using typed array for performance boost.</p>
+			
 			<p>Overall complexity of the algorithm is O(n*<span class="alpha">&alpha;</span>(n)), where n is number of pixels, and <span class="alpha">&alpha;</span>(n) is inverse of the single-valued Ackermann function. Since <span class="alpha">&alpha;</span>(n)&lt;4 for any practical value of n, we have amortized linear time complexity.</p>
+		
 		</article>
 	</body>
 </html>

@@ -18,6 +18,10 @@ h2 {
 	margin-top: 40px;
 	margin-left: 60px;
 }
+.alpha { 
+	font-family: sans-serif;
+	font-style: italic;
+}
 #canvas_stream {
 	border: 3px solid black;
 }

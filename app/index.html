@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Real-time Image Segmentation</title>
+        <meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="../style.css">
+		<script data-main="main" src="require.js"></script>
+	</head>
+	
+    <body>
+		<article>
+			<h1>Real-time Image Segmentation</h1>
+			
+			<video id="video" width="320" height="240" autoplay></video>
+			<canvas id="canvas" width="256" height="192" style="vertical-align: top;"></canvas>
+			
+			<div>
+				output resolution:
+					128x96<input id="res_in" type="range" min="2" max="10" value="4"/>640x480
+					(<span id="info_res"></span>)<br/>
+				threshold:
+					200<input id="threshold_in" type="range" min="2" max="30" value="10"/>3000
+					(<span id="info_threshold"></span>)<br/>
+				frame duration: <span id="info_frame"></span><br/>
+				fps: <span id="info_fps"></span><br/>
+			</div>
+		</article>
+	</body>
+</html>

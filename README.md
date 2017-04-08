@@ -64,7 +64,10 @@ those).
 Union-find data structure is implemented by using typed array to achieve
 performance boost.
 
-Overall complexity of the algorithm is O(n*<span class="alpha">&alpha;</span>(n)), where n is a number of pixels, and <span class="alpha">&alpha;</span>(n) is the inverse of the single-valued Ackermann function. Given that <span class="alpha">&alpha;</span>(n)&lt;4 for any practical value of n, we have amortized linear time complexity.
+Overall complexity of the algorithm is _O(n&middot;&alpha;(n))_, where _n_ is
+a number of pixels, and _&alpha;(n)_ is the inverse of the single-valued 
+Ackermann function. Given that _&alpha;(n)&lt;4_ for any practical value
+of _n_, we have amortized linear time complexity.
 
 
  [1]: http://en.wikipedia.org/wiki/Image_segmentation        "Image Segmentation"

@@ -9,11 +9,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org:lukapopijac/real-time-image-segmentation.git"
+    "url": "git+ssh://git@github.com:lukapopijac/real-time-image-segmentation.git"
   },
   "author": "Luka Popijac",
   "license": "MIT",
-  "homepage": "https://bitbucket.org/lukapopijac/real-time-image-segmentation",
+  "homepage": "https://github.com/lukapopijac/real-time-image-segmentation",
   "devDependencies": {
     "browserify": "^13.1.0",
     "express": "^4.14.0",

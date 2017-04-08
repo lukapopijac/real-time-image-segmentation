@@ -1,8 +1,6 @@
-importScripts('require.js');
-require(['segmentation'], function() {
+'use strict';
 
-
-var segmentation = require('segmentation');
+var segmentation = require('./segmentation');
 
 self.addEventListener('message', function(evt) {
 	var imageData = evt.data.imageData;
@@ -11,6 +9,3 @@ self.addEventListener('message', function(evt) {
 	imageData = segmentation(imageData, evt.data.threshold);
 	self.postMessage({imageData: imageData, time: new Date() - t0});
 }, false);
-
-
-});

@@ -1,3 +1,16 @@
+article {
+	font: 16px Verdana, Geneva, sans-serif;
+	line-height: 1.6;
+	max-width: 980px;
+	margin: 0 auto;
+	text-align: justify;
+}
+h1 {
+	font: 32px sans-serif;
+	text-align: center;
+	margin-top: 40px;
+	margin-bottom: 30px;
+}
 video, canvas {
 	border: 3px solid black;
 }

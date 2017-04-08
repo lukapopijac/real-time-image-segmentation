@@ -1,7 +1,6 @@
-define(function(require, exports, module) {
+'use strict';
 
-
-var imageGraph = require('imagegraph');
+var imageGraph = require('./imagegraph');
 var structSize = 6;
 
 function union(v, i1, i2) {
@@ -145,6 +144,3 @@ module.exports = function(imageData, threshold) {
 	var s = segmentation(imageData, edges, threshold);
 	return s;
 }
-
-
-});

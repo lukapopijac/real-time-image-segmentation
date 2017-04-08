@@ -1,9 +1,7 @@
 'use strict';
 
-/**
-This file builds the project and starts watcher. 
-This is good for development, but it is not production ready.
-*/
+// This file builds the project and starts watcher. 
+// This is good for development, but it is not production ready.
 
 const fs = require('fs');
 const path = require('path');
@@ -46,12 +44,9 @@ var onError = function(err) {
 var bMain = browserify(path.join(src, 'main.js'), browserifyOpts)
 	.on('update', bundleMain)
 	.on('time', createOnDone('main'));
-var bWorkerCD = browserify(path.join(src, 'worker-cube-detection.js'), browserifyOpts)
-	.on('update', bundleWorkerCD)
-	.on('time', createOnDone('worker-cube-detection'));
-var bWorkerSD = browserify(path.join(src, 'worker-state-detection.js'), browserifyOpts)
-	.on('update', bundleWorkerSD)
-	.on('time', createOnDone('worker-state-detection'));
+var bWorker = browserify(path.join(src, 'worker.js'), browserifyOpts)
+	.on('update', bundleWorker)
+	.on('time', createOnDone('worker'));
 
 function bundleMain() {
 	bMain
@@ -60,20 +55,13 @@ function bundleMain() {
 		.pipe(fs.createWriteStream(path.join(dest, 'bundle.js')));
 }
 
-function bundleWorkerCD() {
-	bWorkerCD
+function bundleWorker() {
+	bWorker
 		.bundle()
 		.on('error', onError)
-		.pipe(fs.createWriteStream(path.join(dest, 'wcd.js')));
+		.pipe(fs.createWriteStream(path.join(dest, 'w.js')));
 }
 
-function bundleWorkerSD() {
-	bWorkerSD
-		.bundle()
-		.on('error', onError)
-		.pipe(fs.createWriteStream(path.join(dest, 'wsd.js')));
-}
 
 bundleMain();
-bundleWorkerCD();
-bundleWorkerSD();
+bundleWorker();

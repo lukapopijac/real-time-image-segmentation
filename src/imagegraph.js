@@ -1,6 +1,3 @@
-define(function(require, exports, module) {
-
-
 function generateEdges(imageData) {
 	var data = imageData.data;
 	var width = imageData.width;
@@ -65,6 +62,3 @@ module.exports = function(imageData) {
 	countingSort(edges, 20);  // weights are in top 12 bits
 	return edges;
 };
-
-
-});

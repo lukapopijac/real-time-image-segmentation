@@ -1,3 +1,5 @@
+'use strict';
+
 function imageDataFromVideo(video, width, height) {
 	var canvas = document.createElement('canvas');
 	canvas.width = width;
@@ -82,7 +84,7 @@ function main() {
 	navigator.getUserMedia(videoObj, successCallback, errorCallback);
 	
 	// initialize worker:
-	var worker = new Worker('worker.js');
+	var worker = new Worker('w.js');
 	var cnt = 0;
 	var avg = 0;
 	worker.addEventListener('message', function(evt) {

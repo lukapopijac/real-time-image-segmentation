@@ -14,18 +14,37 @@ server whatsoever (other than initial page load, of course).
 Dependencies
 ------------
  *  Node.js
+ *  npm
 
- 
-How To Run
-----------
+
+How To Run and Develop
+----------------------
+To build the project and run local server over `https` and run watcher, run:
 ```
 npm start
 ```
 
+If you just want to start a local `https` server run:
+```
+node server
+```
+
+If you just need to build the project and start wathcer:
+```
+node build
+```
+
+Buildig the project means creating folder `build` and placing in it all
+the neccessary files needed to run the project in browser.
+
+Note: to use webcam API, page must be downloaded from secure server.
+(Hence the `https` server to be able to run and debug in local network).
+
+
 
 About the Implementation
 ------------------------
-			
+
 In order to maintain undistracted video streaming from the webcam, streaming
 is done in the main thread while segmentation is done in the background thread.
 

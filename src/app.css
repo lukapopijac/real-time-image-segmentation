@@ -1,0 +1,26 @@
+video, canvas {
+	border: 3px solid black;
+}
+.right-wrapper {
+	position: relative;
+	float: right;
+}
+.controls-wrapper {
+	background: #fafad2;
+	border: 3px solid black;
+	padding: 15px;
+	width: 290px;  /* = 320px - padding */
+}
+.separator {
+	height: 20px;
+}
+#threshold_in {
+	vertical-align: middle;
+	width: 220px;
+}
+#res_in {
+	font-family: inherit;
+}
+.range-stop {
+	font-size: 10px;
+}

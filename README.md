@@ -19,7 +19,7 @@ Dependencies
 
 How To Run and Develop
 ----------------------
-To build the project and run local server over `https` and run watcher, run:
+To build the project with watcher, and run local server over `https`, run:
 ```
 npm start
 ```
@@ -29,7 +29,7 @@ If you just want to start a local `https` server run:
 node server
 ```
 
-If you just need to build the project and start wathcer:
+If you just need to build the project and start watcher:
 ```
 node build
 ```

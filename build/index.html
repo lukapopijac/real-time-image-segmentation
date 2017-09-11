@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Real-Time Image Segmentation</title>
+        <meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script src="bundle.js" defer></script>
+	</head>
+	
+    <body>
+		<article>
+			<h1>Real-Time Image Segmentation</h1>
+			
+			<canvas id="canvas" width="256" height="192" style="vertical-align: top;"></canvas>
+			<div class="right-wrapper">
+				<video id="video" width="320" height="240" autoplay></video>
+				<div class="controls-wrapper">
+				
+				<div>Output resolution:
+					<select id="res_in">
+						<option value="2">128x96</option>
+						<option value="3">192x144</option>
+						<option value="4">256x192</option>
+						<option value="5" selected>320x240</option>
+						<option value="6">384x288</option>
+						<option value="7">448x336</option>
+						<option value="8">512x384</option>
+						<option value="9">576x432</option>
+						<option value="10">640x480</option>
+					</select>
+				</div>
+				
+				<div class="separator"></div>
+				<div>Threshold: <span id="info_threshold"></span><br/>
+					<span class="range-stop">200</span> <input id="threshold_in" type="range" min="2" max="30" value="10"/> <span class="range-stop">3000</span>
+				</div>
+				<div class="separator"></div>
+				Segmentation: <span id="info_frame"></span><br/>
+				<div class="separator"></div>
+				FPS: <span id="info_fps"></span><br/>
+				
+				</div>
+			</div>
+		</article>
+		
+		<!-- github ribbon -->
+		<style media="(max-width:385px)">.ribbon-h82k1j9{transform:scale(.8)translate(22px,-13px)}</style>
+		<div class="ribbon-h82k1j9" style="position:absolute;top:0;right:0;width:130px;height:74px;text-align:left;overflow:hidden;pointer-events:none;">
+			<a href="https://github.com/lukapopijac/real-time-image-segmentation" style="position:absolute;transform:rotate(30deg);width:250px;height:80px;right:-100px;top:-33px;cursor:pointer;z-index:2000;pointer-events:auto;">
+				<span style="box-sizing:content-box;position:absolute;bottom:0;width:100%;height:34px;background:darkred;box-shadow:0 1px 8px black;">
+					<span style="box-sizing:content-box;position:absolute;border:1px dotted orange;width:100%;height:28px;bottom:2px;line-height:29px;text-align:center;font-family:sans-serif;font-weight:normal;font-size:13px;color:white;">GitHub</span>
+				</span>
+			</a>
+		</div>
+
+	</body>
+</html>

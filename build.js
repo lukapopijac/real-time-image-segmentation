@@ -7,6 +7,7 @@ const fs = require('fs');
 const path = require('path');
 const browserify = require('browserify');
 const watchify = require('watchify');
+const uglifyify = require('uglifyify');
 
 const src = './src';
 const dest = './build';
@@ -22,10 +23,11 @@ fs.createReadStream(path.join(src, 'style.css'))
 
 // prepare browserify instances
 var browserifyOpts = {
-	debug: true,
+	debug: false,
 	cache: {},
 	packageCache: {},
-	plugin: [watchify]
+	plugin: [watchify],
+	transform: [uglifyify]
 };
 
 var createOnDone = function(entry) {

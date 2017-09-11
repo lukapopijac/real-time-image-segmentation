@@ -24,7 +24,7 @@ To build the project with watcher, and run local server over `https`, run:
 npm start
 ```
 
-If you just want to start a local `https` server run:
+If you just want to start a local `https` server, run:
 ```
 node server
 ```

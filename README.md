@@ -1,11 +1,12 @@
 Real-Time Image Segmentation
 ============================
 
-[Image segmentation][1] is the process of partitioning a digital image into
-multiple segments. This project deals with image segmentation of directly
-streamed video from a webcam in real-time.
+[Image segmentation](http://en.wikipedia.org/wiki/Image_segmentation) is
+the process of partitioning a digital image into multiple segments. This
+project deals with image segmentation of directly streamed video from a
+webcam in real-time.
 
-The application can be tried at [lukapopijac.com/real-time-image-segmentation][2].
+Try the app: [Real-Time Image Segmentation](https://lukapopijac.github.io/real-time-image-segmentation/)
 
 The whole application runs in the browser. There is no communication with the
 server whatsoever (other than initial page load, of course).
@@ -68,10 +69,6 @@ Overall complexity of the algorithm is _O(n&middot;&alpha;(n))_, where _n_ is
 a number of pixels, and _&alpha;(n)_ is the inverse of the single-valued 
 Ackermann function. Given that _&alpha;(n)&lt;4_ for any practical value
 of _n_, we have amortized linear time complexity.
-
-
- [1]: http://en.wikipedia.org/wiki/Image_segmentation        "Image Segmentation"
- [2]: https://lukapopijac.com/real-time-image-segmentation/  "Real-Time Image Segmentation"
 
 
 

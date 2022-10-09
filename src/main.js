@@ -64,25 +64,20 @@ function main() {
 	var canvas = document.getElementById('canvas');
 	var context = canvas.getContext('2d');
 	var video = document.getElementById('video');
-	
-	var videoObj = {video: true};
-	var errorCallback = function(error) {
-		console.log('Video capture error: ', error.code); 
-	};
-	var successCallback = function(stream) {
-		window.stream = stream;
-		if(window.URL) video.src = window.URL.createObjectURL(stream);
-		else video.src = stream;
-		video.play();
-		sendImageDataToWorker(canvas, video, worker);
-	};
-	
+
 	// initialize getUserMedia:
-	navigator.getUserMedia = navigator.getUserMedia || 
-		navigator.webkitGetUserMedia || 
-		navigator.mozGetUserMedia;
-	navigator.getUserMedia(videoObj, successCallback, errorCallback);
-	
+	navigator.mediaDevices.getUserMedia({video: true})
+		.then(stream => {
+			window.stream = stream;
+			video.srcObject = stream;
+			video.play();
+			sendImageDataToWorker(canvas, video, worker);			
+		})
+		.catch(error => {
+			console.error(`${error.name}: ${error.message}`);
+		})
+	;
+
 	// initialize worker:
 	var worker = new Worker('w.js');
 	var cnt = 0;
@@ -92,7 +87,7 @@ function main() {
 		updateFrameRateInfo(evt.data.time);
 		sendImageDataToWorker(canvas, video, worker);
 	});
-	
+
 	// initialize controls:
 	initControls();
 }

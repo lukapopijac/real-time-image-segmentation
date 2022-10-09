@@ -4,7 +4,7 @@
   "description": "Real-time image segmentation",
   "main": "main.js",
   "scripts": {
-    "start": "start node server.js | node build.js",
+    "start": "node server.js | node build.js",
     "build": "node build.js"
   },
   "repository": {

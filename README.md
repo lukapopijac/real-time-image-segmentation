@@ -20,12 +20,12 @@ Dependencies
 
 How To Run and Develop
 ----------------------
-To build the project with watcher, and run local server over `https`, run:
+To build the project with watcher, and run local server over `http`, run:
 ```
 npm start
 ```
 
-If you just want to start a local `https` server, run:
+If you just want to start a local `http` server, run:
 ```
 node server
 ```
@@ -37,9 +37,6 @@ node build
 
 Buildig the project means creating folder `build` and placing in it all
 the neccessary files needed to run the project in browser.
-
-Note: to use webcam API, page must be downloaded from secure server.
-(Hence the `https` server to be able to run and debug in local network).
 
 
 
